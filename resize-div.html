@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Div Testing</title>
+    <style type="text/css">
+        #textBox {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #CCC;
+            font-size: 8px;
+            color: #317082;
+        }
+    </style>
+
+</head>
+<body>
+<div id="textBox"><span> I used "height: 25px" in the rkj g ru r bg r ur style to define the height, but it's not working...thanks</span>
+</div>
+</body>
+<script type="text/javascript">
+    //Define Variables
+    var maxFont = 32;
+    var textBox = document.getElementById("textBox");
+    var textSpan = textBox.getElementsByTagName('SPAN')[0];
+    var currFontSize = 8;
+
+//While font-size is too small, increase font size.
+    while (textBox.offsetHeight > textSpan.offsetHeight && currFontSize < maxFont) {
+        currFontSize += 1;
+        textSpan.style.fontSize = currFontSize + 'px';
+        console.log(textBox.offsetHeight, textSpan.offsetHeight);
+    }
+
+    //Font-size will increase until it overflows. Subtract one so that it won't overflow.
+    textSpan.style.fontSize = (currFontSize - 1) + 'px';
+</script>
+</html>
