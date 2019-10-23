@@ -35,5 +35,5 @@ $('#club_directory_content').find('ul > .club_list > div')
         clubObj[element.innerText] = nextSib.innerText
       } 
     })
-    clubs.push(Json.stringify(clubObj)) 
+    clubs.push(JSON.stringify(clubObj)) 
 });
