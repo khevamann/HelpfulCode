@@ -22,3 +22,18 @@ navigator.permissions.query({name: "clipboard-write"}).then(result => {
   };
 });
 alert('Content Copied');
+
+//Extracts all club information from https://www.asi.calpoly.edu/club_directories/directory
+var clubs = []
+$('#club_directory_content').find('ul > .club_list > div')
+  .each(function(){
+    var clubObj = {}
+    $(this).children().each(function(){
+      var element = $(this)[0]
+      if(element.className == 'club_details_title'){
+        var nextSib = element.nextSibling
+        clubObj[element.innerText] = nextSib.innerText
+      } 
+    })
+    clubs.push(Json.stringify(clubObj)) 
+});
