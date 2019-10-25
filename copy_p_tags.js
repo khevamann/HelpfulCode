@@ -25,10 +25,11 @@ alert('Content Copied');
 
 //Extracts all club information from https://www.asi.calpoly.edu/club_directories/directory
 var clubs = []
-$('#club_directory_content').find('ul > .club_list > div')
+$('#club_directory_content').find('ul > .club_list')
   .each(function(){
     var clubObj = {}
-    $(this).children().each(function(){
+    clubObj.name = $(this).find('a')[0].innerText
+    $(this).find('span').each(function(){
       var element = $(this)[0]
       if(element.className == 'club_details_title'){
         var nextSib = element.nextSibling
@@ -37,3 +38,14 @@ $('#club_directory_content').find('ul > .club_list > div')
     })
     clubs.push(JSON.stringify(clubObj)) 
 });
+
+
+//Save JSON to file
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+download(clubs, 'json.txt', 'text/plain');
